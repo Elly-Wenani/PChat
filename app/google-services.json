@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "63184825428",
+    "firebase_url": "https://pchart-afab1.firebaseio.com",
+    "project_id": "pchart-afab1",
+    "storage_bucket": "pchart-afab1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63184825428:android:2a772812fee5b5e0f011c1",
+        "android_client_info": {
+          "package_name": "com.example.pchart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63184825428-5mhb5gops86sft9fieigmjvghu08mptd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZxhaet5XQtupWQb4hwHCwOniK8R35ftw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63184825428-5mhb5gops86sft9fieigmjvghu08mptd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
