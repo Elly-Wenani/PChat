@@ -25,4 +25,5 @@
     <string name="new_user_sign_up">NEW USER? SIGN UP</string>
     <string name="welcome_text">Hello there, welcome back</string>
     <string name="sing_in_to_continue">Sing In to continue</string>
+    <string name="resent_verification">Resent Verification</string>
 </resources>
