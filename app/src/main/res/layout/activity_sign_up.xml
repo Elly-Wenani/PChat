@@ -63,13 +63,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
@@ -80,6 +76,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -96,38 +112,43 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:id="@+id/btnSignUp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:background="#000000"
         android:text="@string/sign_up"
         android:textColor="#fff"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
     <TextView
-        android:id="@+id/tvSignUp"
-        android:layout_width="match_parent"
+        android:id="@+id/tvSignIn"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:text="@string/have_account_sign_in"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
-        app:layout_constraintStart_toStartOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintEnd_toEndOf="@+id/btnSignUp"
+        app:layout_constraintStart_toStartOf="@+id/btnSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+
+    <TextView
+        android:id="@+id/tvResendVerification"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="@string/resent_verification"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvSignIn"
+        app:layout_constraintStart_toStartOf="@+id/tvSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/tvSignIn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

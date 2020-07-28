@@ -21,8 +21,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static android.text.TextUtils.isEmpty;
-
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
@@ -44,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setupFirebaseAuth();
 
-        Button signIn = (Button) findViewById(R.id.btnLogin);
+        Button signIn = (Button) findViewById(R.id.btnSignUp);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,24 +75,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        TextView register = (TextView) findViewById(R.id.tvSignUp);
+        TextView register = (TextView) findViewById(R.id.tvSignIn);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent to register activity
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(intent);
             }
         });
 
         Button forgot = findViewById(R.id.btnForget);
         forgot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //...
-            }
-        });
-
-        TextView resendEmailVerification = (TextView) findViewById(R.id.tvResendVerification);
-        resendEmailVerification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //...
