@@ -15,7 +15,7 @@
         android:layout_marginTop="40dp"
         android:text="@string/welcome_text"
         android:textColor="#000"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <TextView

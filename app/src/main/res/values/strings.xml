@@ -26,4 +26,8 @@
     <string name="welcome_text">Hello there, welcome back</string>
     <string name="sing_in_to_continue">Sing In to continue</string>
     <string name="resent_verification">Resent Verification</string>
+    <string name="am_glad_you_are_joining_us">Am glad you are joining us!</string>
+    <string name="register_to_continue">Register to continue</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="have_account_sign_in">Have Account? Sign in</string>
 </resources>
