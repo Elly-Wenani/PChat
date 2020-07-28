@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void hideDialog(){
         if(mProgressBar.getVisibility() == View.VISIBLE){
-            mProgressBar.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 
