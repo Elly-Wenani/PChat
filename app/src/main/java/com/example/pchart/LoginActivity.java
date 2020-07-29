@@ -134,10 +134,10 @@ public class LoginActivity extends AppCompatActivity {
                     //check if email is verified
                     if (user.isEmailVerified()) {
                         Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                        Toast.makeText(LoginActivity.this, "Authenticated with: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Authenticated with: " + user.getEmail(), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
 
