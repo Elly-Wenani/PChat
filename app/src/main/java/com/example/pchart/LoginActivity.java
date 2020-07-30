@@ -36,13 +36,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mEmail = (EditText) findViewById(R.id.editTextEmail);
-        mPassword = (EditText) findViewById(R.id.editTextPassword);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mEmail = findViewById(R.id.editTextEmail);
+        mPassword = findViewById(R.id.editTextPassword);
+        mProgressBar = findViewById(R.id.progressBar);
 
         setupFirebaseAuth();
 
-        Button signIn = (Button) findViewById(R.id.btnSignUp);
+        Button signIn = findViewById(R.id.btnSignUp);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
