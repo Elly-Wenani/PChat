@@ -36,4 +36,7 @@
     <string name="confirm">OK</string>
     <string name="cancel">Cancel</string>
     <string name="details_resend_verification">Enter Details You Used To Register</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="no_spaces">Spaces Are Not Allowed</string>
 </resources>

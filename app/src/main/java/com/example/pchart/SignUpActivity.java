@@ -91,10 +91,8 @@ public class SignUpActivity extends AppCompatActivity {
         resendEmailVerification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Check your email inbox", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                //TODO: Resend a verification email to user
+                ResendVerificationDialog dialog = new ResendVerificationDialog();
+                dialog.show(getSupportFragmentManager(), "dialog_resend_email_verification");
             }
         });
     }

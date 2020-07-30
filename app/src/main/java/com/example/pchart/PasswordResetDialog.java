@@ -47,11 +47,12 @@ public class PasswordResetDialog extends DialogFragment {
                     sendPasswordResetEmail(mEmail.getText().toString());
                     getDialog().dismiss();
                 } else if (isEmpty(mEmail.getText().toString())) {
-                    mEmail.setError("Enter Your Email");
+                    mEmail.setError(getString(R.string.enter_email));
                     mEmail.setFocusable(true);
                 } else {
-                    Toast.makeText(mContext, "Spaces Are Not Allowed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, R.string.no_spaces, Toast.LENGTH_SHORT).show();
                     mEmail.setText("");
+                    mEmail.setFocusable(true);
                 }
             }
         });

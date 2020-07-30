@@ -48,14 +48,23 @@ public class ResendVerificationDialog extends DialogFragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: attempting to resend verification email.");
 
-                if (!isEmpty(mConfirmEmail.getText().toString())
-                        && !isEmpty(mConfirmPassword.getText().toString())) {
+                if (!isEmpty(mConfirmEmail.getText().toString().trim())
+                        && !isEmpty(mConfirmPassword.getText().toString().trim())) {
 
                     //temporarily authenticate and resend verification email
                     authenticateAndResendEmail(mConfirmEmail.getText().toString(),
                             mConfirmPassword.getText().toString());
+                    getDialog().dismiss();
+                } else if (isEmpty(mConfirmEmail.getText().toString())) {
+                    mConfirmEmail.setError(getString(R.string.enter_email));
+                    mConfirmEmail.setFocusable(true);
+                } else if (isEmpty(mConfirmPassword.getText().toString())) {
+                    mConfirmPassword.setError(getString(R.string.enter_password));
+                    mConfirmPassword.setFocusable(true);
                 } else {
-                    Toast.makeText(mContext, "all fields must be filled out", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, R.string.no_spaces, Toast.LENGTH_SHORT).show();
+                    mConfirmEmail.setText("");
+                    mConfirmPassword.setText("");
                 }
             }
         });
