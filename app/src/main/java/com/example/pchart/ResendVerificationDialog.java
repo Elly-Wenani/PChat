@@ -54,7 +54,6 @@ public class ResendVerificationDialog extends DialogFragment {
                     //temporarily authenticate and resend verification email
                     authenticateAndResendEmail(mConfirmEmail.getText().toString(),
                             mConfirmPassword.getText().toString());
-                    getDialog().dismiss();
                 } else if (isEmpty(mConfirmEmail.getText().toString())) {
                     mConfirmEmail.setError(getString(R.string.enter_email));
                     mConfirmEmail.setFocusable(true);
@@ -70,7 +69,7 @@ public class ResendVerificationDialog extends DialogFragment {
         });
 
         // Cancel button for closing the dialog
-        TextView cancelDialog = (TextView) view.findViewById(R.id.dialogCancel);
+        TextView cancelDialog = view.findViewById(R.id.dialogCancel);
         cancelDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
