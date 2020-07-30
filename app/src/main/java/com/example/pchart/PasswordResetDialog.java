@@ -47,10 +47,10 @@ public class PasswordResetDialog extends DialogFragment {
                     sendPasswordResetEmail(mEmail.getText().toString());
                     getDialog().dismiss();
                 } else if (isEmpty(mEmail.getText().toString())) {
-                    mEmail.setError("Enter your email");
+                    mEmail.setError("Enter Your Email");
                     mEmail.setFocusable(true);
                 } else {
-                    Toast.makeText(mContext, "Spaces are not allowed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Spaces Are Not Allowed", Toast.LENGTH_SHORT).show();
                     mEmail.setText("");
                 }
             }
@@ -71,11 +71,11 @@ public class PasswordResetDialog extends DialogFragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: Password Reset Email sent.");
-                            Toast.makeText(mContext, "Password Reset Link Sent to Email",
+                            Toast.makeText(mContext, "Password Reset Link Sent To Your Email",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "onComplete: No user associated with that email.");
-                            Toast.makeText(mContext, "No User is Associated with that Email",
+                            Toast.makeText(mContext, "No User Is Associated With That Email",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
