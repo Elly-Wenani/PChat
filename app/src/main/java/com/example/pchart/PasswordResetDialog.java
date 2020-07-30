@@ -1,5 +1,6 @@
 package com.example.pchart;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,12 +42,17 @@ public class PasswordResetDialog extends DialogFragment {
         confirmDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isEmpty(mEmail.getText().toString())) {
-                    Log.d(TAG, "onClick: attempting to send reset link to: " + mEmail.getText().toString());
+                if (!isEmpty(mEmail.getText().toString().trim())) {
+                    Log.d(TAG, "onClick: attempting to send reset link to: " + mEmail.getText().toString().trim());
                     sendPasswordResetEmail(mEmail.getText().toString());
                     getDialog().dismiss();
+                } else if (isEmpty(mEmail.getText().toString())) {
+                    mEmail.setError("Enter your email");
+                    mEmail.setFocusable(true);
+                } else {
+                    Toast.makeText(mContext, "Spaces are not allowed", Toast.LENGTH_SHORT).show();
+                    mEmail.setText("");
                 }
-
             }
         });
 

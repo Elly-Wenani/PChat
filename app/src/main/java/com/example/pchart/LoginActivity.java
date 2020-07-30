@@ -88,7 +88,8 @@ public class LoginActivity extends AppCompatActivity {
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //...
+                PasswordResetDialog dialog = new PasswordResetDialog();
+                dialog.show(getSupportFragmentManager(), "dialog_password_reset");
             }
         });
 
