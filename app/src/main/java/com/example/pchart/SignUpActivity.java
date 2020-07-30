@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -76,11 +77,24 @@ public class SignUpActivity extends AppCompatActivity {
 
         hideSoftKeyboard();
 
-        TextView resendEmailVerification = (TextView) findViewById(R.id.tvResendVerification);
+        TextView haveAccount = findViewById(R.id.tvSignIn);
+        haveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        TextView resendEmailVerification = findViewById(R.id.tvResendVerification);
         resendEmailVerification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //...
+                Snackbar.make(v, "Check your email inbox", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                //TODO: Resend a verification email to user
             }
         });
     }

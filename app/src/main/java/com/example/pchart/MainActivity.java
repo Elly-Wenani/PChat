@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Sign out the current user
      */
-    private void signOut(){
+    private void signOut() {
         Log.d(TAG, "signOut: signing out");
         FirebaseAuth.getInstance().signOut();
     }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     /*
         ----------------------------- Firebase setup ---------------------------------
      */
-    private void setupFirebaseAuth(){
+    private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
