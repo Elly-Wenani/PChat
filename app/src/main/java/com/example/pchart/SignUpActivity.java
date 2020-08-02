@@ -14,12 +14,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pchart.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -109,10 +112,37 @@ public class SignUpActivity extends AppCompatActivity {
                             //send email verification
                             sendVerificationEmail();
 
-                            FirebaseAuth.getInstance().signOut();
+                            //insert some default data
+                            User user = new User();
+                            user.setName(email.substring(0, email.indexOf("@")));
+                            user.setPhone("1");
+                            user.setProfile_image("");
+                            user.setSecurity_level("1");
+                            user.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                            //redirect the user to the login screen
-                            redirectLoginScreen();
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child(getString(R.string.dbnode_users))
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            FirebaseAuth.getInstance().signOut();
+
+                                            //redirect the user to the login screen
+                                            redirectLoginScreen();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "something went wrong.", Toast.LENGTH_SHORT).show();
+                                    FirebaseAuth.getInstance().signOut();
+
+                                    //redirect the user to the login screen
+                                    redirectLoginScreen();
+                                }
+                            });
+
                         }
                         if (!task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Unable to Register",
