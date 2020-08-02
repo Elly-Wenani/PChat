@@ -121,19 +121,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
     <TextView
-        android:id="@+id/tvSignIn"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:text="@string/have_account_sign_in"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnSignUp"
-        app:layout_constraintStart_toStartOf="@+id/btnSignUp"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
-
-    <TextView
         android:id="@+id/tvResendVerification"
         android:layout_width="0dp"
         android:layout_height="30dp"
@@ -142,9 +129,9 @@
         android:text="@string/resent_verification"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvSignIn"
-        app:layout_constraintStart_toStartOf="@+id/tvSignIn"
-        app:layout_constraintTop_toBottomOf="@+id/tvSignIn" />
+        app:layout_constraintEnd_toEndOf="@+id/btnSignUp"
+        app:layout_constraintStart_toStartOf="@+id/btnSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,16 +77,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         hideSoftKeyboard();
 
-        TextView haveAccount = findViewById(R.id.tvSignIn);
-        haveAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         TextView resendEmailVerification = findViewById(R.id.tvResendVerification);
         resendEmailVerification.setOnClickListener(new View.OnClickListener() {
             @Override
