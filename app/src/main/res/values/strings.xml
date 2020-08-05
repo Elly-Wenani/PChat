@@ -40,4 +40,7 @@
     <string name="enter_email">Enter Email</string>
     <string name="no_spaces">Spaces Are Not Allowed</string>
     <string name="dbnode_users">users</string>
+    <string name="user_profile">User profile</string>
+    <string name="first_and_last_name">First and last name</string>
+    <string name="save">Save</string>
 </resources>
