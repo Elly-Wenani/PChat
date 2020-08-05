@@ -81,9 +81,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="40dp"
                         android:layout_marginLeft="40dp"
                         android:background="@null"
-                        android:hint="Primary contact phone #"
+                        android:hint="@string/primary_contact_phone"
                         android:inputType="phone"
                         android:textColor="#000" />
 
@@ -106,9 +107,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="40dp"
                         android:layout_marginLeft="40dp"
                         android:background="@null"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:textColor="#000" />
 
@@ -131,9 +133,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="40dp"
                         android:layout_marginLeft="40dp"
                         android:background="@null"
-                        android:hint="Confirm Password"
+                        android:hint="@string/confirm_password"
                         android:inputType="textPassword"
                         android:textColor="#000" />
 
@@ -157,7 +160,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="Change Password"
+                    android:text="@string/change_password"
                     android:textColor="#000"
                     android:textSize="16sp" />
 
