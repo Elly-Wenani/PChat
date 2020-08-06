@@ -95,7 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
         hideSoftKeyboard();
     }
 
-    private void sendResetPasswordLink(){
+    private void sendResetPasswordLink() {
         FirebaseAuth.getInstance().sendPasswordResetEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -104,7 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
                             Log.d(TAG, "onComplete: Password Reset Email sent.");
                             Toast.makeText(getApplicationContext(), "Sent Password Reset Link to Email",
                                     Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             Log.d(TAG, "onComplete: No user associated with that email.");
 
                             Toast.makeText(getApplicationContext(), "No User Associated with that Email.",
@@ -115,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity {
                 });
     }
 
-    private void editUserEmail(){
+    private void editUserEmail() {
 
         showDialog();
 
@@ -128,11 +128,11 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: re-authenticate success.");
 
                             //make sure the domain is valid
-                            if(isValidDomain(mEmail.getText().toString())){
+                            if (isValidDomain(mEmail.getText().toString())) {
 
                                 ///////////////////now check to see if the email is not already present in the database
                                 FirebaseAuth.getInstance().fetchProvidersForEmail(mEmail.getText().toString()).addOnCompleteListener(
@@ -140,16 +140,16 @@ public class ProfileActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<ProviderQueryResult> task) {
 
-                                                if(task.isSuccessful()){
+                                                if (task.isSuccessful()) {
                                                     ///////// getProviders().size() will return size 1 if email ID is in use.
 
                                                     Log.d(TAG, "onComplete: RESULT: " + task.getResult().getProviders().size());
-                                                    if(task.getResult().getProviders().size() == 1){
+                                                    if (task.getResult().getProviders().size() == 1) {
                                                         Log.d(TAG, "onComplete: That email is already in use.");
                                                         hideDialog();
                                                         Toast.makeText(getApplicationContext(), "That email is already in use", Toast.LENGTH_SHORT).show();
 
-                                                    }else{
+                                                    } else {
                                                         Log.d(TAG, "onComplete: That email is available.");
 
                                                         /////////////////////add new email
@@ -162,7 +162,7 @@ public class ProfileActivity extends AppCompatActivity {
                                                                             Toast.makeText(getApplicationContext(), "Updated email", Toast.LENGTH_SHORT).show();
                                                                             sendVerificationEmail();
                                                                             FirebaseAuth.getInstance().signOut();
-                                                                        }else{
+                                                                        } else {
                                                                             Log.d(TAG, "onComplete: Could not update email.");
                                                                             Toast.makeText(getApplicationContext(), "unable to update email", Toast.LENGTH_SHORT).show();
                                                                         }
@@ -190,11 +190,11 @@ public class ProfileActivity extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(), "unable to update email", Toast.LENGTH_SHORT).show();
                                             }
                                         });
-                            }else{
+                            } else {
                                 Toast.makeText(getApplicationContext(), "you must use a company email", Toast.LENGTH_SHORT).show();
                             }
 
-                        }else{
+                        } else {
                             Log.d(TAG, "onComplete: Incorrect Password");
                             Toast.makeText(getApplicationContext(), "Incorrect Password", Toast.LENGTH_SHORT).show();
                             hideDialog();
@@ -224,8 +224,7 @@ public class ProfileActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Sent Verification Email", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(getApplicationContext(), "Couldn't Verification Send Email", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -234,12 +233,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void setCurrentEmail(){
+    private void setCurrentEmail() {
         Log.d(TAG, "setCurrentEmail: setting current email to EditText field");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user != null){
+        if (user != null) {
             Log.d(TAG, "setCurrentEmail: user is NOT null.");
 
             String email = user.getEmail();
@@ -252,37 +251,39 @@ public class ProfileActivity extends AppCompatActivity {
 
     /**
      * Returns True if the user's email contains '@tabian.ca'
+     *
      * @param email
      * @return
      */
-    private boolean isValidDomain(String email){
+    private boolean isValidDomain(String email) {
         Log.d(TAG, "isValidDomain: verifying email has correct domain: " + email);
         String domain = email.substring(email.indexOf("@") + 1).toLowerCase();
         Log.d(TAG, "isValidDomain: users domain: " + domain);
         return domain.equals(DOMAIN_NAME);
     }
 
-    private void showDialog(){
+    private void showDialog() {
         mProgressBar.setVisibility(View.VISIBLE);
 
     }
 
-    private void hideDialog(){
-        if(mProgressBar.getVisibility() == View.VISIBLE){
+    private void hideDialog() {
+        if (mProgressBar.getVisibility() == View.VISIBLE) {
             mProgressBar.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void hideSoftKeyboard(){
+    private void hideSoftKeyboard() {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     /**
      * Return true if the @param is null
+     *
      * @param string
      * @return
      */
-    private boolean isEmpty(String string){
+    private boolean isEmpty(String string) {
         return string.equals("");
     }
 
@@ -292,19 +293,19 @@ public class ProfileActivity extends AppCompatActivity {
         checkAuthenticationState();
     }
 
-    private void checkAuthenticationState(){
+    private void checkAuthenticationState() {
         Log.d(TAG, "checkAuthenticationState: checking authentication state.");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user == null){
+        if (user == null) {
             Log.d(TAG, "checkAuthenticationState: user is null, navigating back to login screen.");
 
             Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
 //            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
-        }else{
+        } else {
             Log.d(TAG, "checkAuthenticationState: user is authenticated.");
         }
     }
@@ -312,7 +313,7 @@ public class ProfileActivity extends AppCompatActivity {
     /*
             ----------------------------- Firebase setup ---------------------------------
          */
-    private void setupFirebaseAuth(){
+    private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
