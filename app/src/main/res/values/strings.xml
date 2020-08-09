@@ -46,4 +46,6 @@
     <string name="primary_contact_phone">Primary contact phone</string>
     <string name="change_password">Change Password</string>
     <string name="profile">Profile</string>
+    <string name="field_name">Field Name</string>
+    <string name="field_phone">Field Phone</string>
 </resources>

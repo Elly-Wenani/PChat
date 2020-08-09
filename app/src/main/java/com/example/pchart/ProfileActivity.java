@@ -24,6 +24,8 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -37,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     //widgets
-    private EditText mEmail, mCurrentPassword;
+    private EditText mEmail, mCurrentPassword, mName, mPhone;
     private Button mSave;
     private ProgressBar mProgressBar;
     private TextView mResetPasswordLink;
@@ -49,6 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: started.");
         mEmail = findViewById(R.id.input_email);
+        mName = findViewById(R.id.input_name);
+        mPhone = findViewById(R.id.input_phone);
         mCurrentPassword = findViewById(R.id.input_password);
         mSave = findViewById(R.id.btn_save);
         mProgressBar = findViewById(R.id.progressBar);
@@ -79,6 +83,27 @@ public class ProfileActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), "Email and Current Password Fields Must be Filled to Save", Toast.LENGTH_SHORT).show();
                     }
+                }
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                /*
+                 * Change user name
+                 * */
+                if (!mName.getText().toString().equals("")) {
+                    reference.child(getString(R.string.dbnode_users))
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child(getString(R.string.field_name))
+                            .setValue(mName.getText().toString());
+                }
+
+                /*
+                 * Change phone number
+                 * */
+                if (!mPhone.getText().toString().equals("")) {
+                    reference.child(getString(R.string.dbnode_users))
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child(getString(R.string.field_phone))
+                            .setValue(mPhone.getText().toString());
                 }
             }
         });
