@@ -44,7 +44,6 @@
     <string name="first_and_last_name">First and last name</string>
     <string name="save">Save</string>
     <string name="primary_contact_phone">Primary contact phone</string>
-    <string name="email">Email</string>
     <string name="change_password">Change Password</string>
     <string name="profile">Profile</string>
 </resources>

@@ -36,7 +36,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="" />
+                    android:src="@drawable/ic_baseline_person_24" />
 
                 <RelativeLayout
                     android:id="@+id/relLayout2"
@@ -60,6 +60,7 @@
                         android:layout_marginLeft="40dp"
                         android:background="@null"
                         android:hint="@string/first_and_last_name"
+                        android:singleLine="true"
                         android:textColor="#000" />
 
                 </RelativeLayout>
@@ -110,6 +111,7 @@
                         android:layout_marginStart="40dp"
                         android:layout_marginLeft="40dp"
                         android:background="@null"
+                        android:enabled="false"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:textColor="#000" />
