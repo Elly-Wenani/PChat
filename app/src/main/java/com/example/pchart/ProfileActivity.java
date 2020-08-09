@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pchart.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -24,8 +25,12 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -59,8 +64,14 @@ public class ProfileActivity extends AppCompatActivity {
         mResetPasswordLink = findViewById(R.id.change_password);
 
         setupFirebaseAuth();
-
         setCurrentEmail();
+        init();
+        hideSoftKeyboard();
+    }
+
+    private void init(){
+
+        getUserAccountsData();
 
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,8 +128,6 @@ public class ProfileActivity extends AppCompatActivity {
                 sendResetPasswordLink();
             }
         });
-
-        hideSoftKeyboard();
     }
 
     private void sendResetPasswordLink() {
@@ -269,6 +278,57 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void getUserAccountsData() {
+        Log.d(TAG, "getUserAccountsData: getting user account information");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        /*--------query one--------*/
+        Query query1 = reference.child(getString(R.string.dbnode_users))
+                .orderByKey()
+                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    Log.d(TAG, "onDataChange: (QUERY METHOD 1) found user: " + user.toString());
+
+                    mName.setText(user.getName());
+                    mPhone.setText(user.getPhone());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        /*--------query two--------*/
+        Query query2 = reference.child(getString(R.string.dbnode_users))
+                .orderByChild(getString(R.string.field_user_id))
+                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    Log.d(TAG, "onDataChange: (QUERY METHOD 2) found user: " + user.toString());
+
+                    mName.setText(user.getName());
+                    mPhone.setText(user.getPhone());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        mEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
 
     private void setCurrentEmail() {

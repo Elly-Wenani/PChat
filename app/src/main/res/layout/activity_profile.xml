@@ -114,6 +114,7 @@
                         android:enabled="false"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
+                        android:singleLine="true"
                         android:textColor="#000" />
 
                 </RelativeLayout>
