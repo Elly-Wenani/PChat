@@ -335,7 +335,8 @@ public class ProfileActivity extends AppCompatActivity implements
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     //Now insert the download url into the firebase database
-                    Uri firebaseURL = taskSnapshot.getDownloadUrl();
+//                    Uri firebaseURL = taskSnapshot.getStorage().getDownloadUrl();
+                    Task<Uri> firebaseURL = taskSnapshot.getStorage().getDownloadUrl();
                     Toast.makeText(ProfileActivity.this, "Upload Success", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onSuccess: firebase download url : " + firebaseURL.toString());
                     FirebaseDatabase.getInstance().getReference()
