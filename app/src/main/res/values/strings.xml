@@ -61,4 +61,5 @@
     <string name="field_chatroom_messages">chatroom_messages</string>
     <string name="field_message">message</string>
     <string name="field_timestamp">timestamp</string>
+    <string name="dialog_change_photo">Change profile photo</string>
 </resources>
