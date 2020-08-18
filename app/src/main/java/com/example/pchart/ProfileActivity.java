@@ -316,14 +316,9 @@ public class ProfileActivity extends AppCompatActivity implements
             // Create file metadata including the content type
             StorageMetadata metadata = new StorageMetadata.Builder()
                     .setContentType("image/jpg")
-                    .setContentLanguage("en") //see nodes below
-                    /*
-                    Make sure to use proper language code ("English" will cause a crash)
-                    I actually submitted this as a bug to the Firebase github page so it might be
-                    fixed by the time you watch this video. You can check it out at https://github.com/firebase/quickstart-unity/issues/116
-                     */
-                    .setCustomMetadata("Mitch's special meta data", "JK nothing special here")
-                    .setCustomMetadata("location", "Iceland")
+                    .setContentLanguage("en")
+                    .setCustomMetadata("Elly's special meta data", "JK nothing special here")
+                    .setCustomMetadata("location", "Kenya")
                     .build();
             //if the image size is valid then we can submit to database
             UploadTask uploadTask = null;
@@ -335,7 +330,7 @@ public class ProfileActivity extends AppCompatActivity implements
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     //Now insert the download url into the firebase database
-//                    Uri firebaseURL = taskSnapshot.getStorage().getDownloadUrl();
+                    //Uri firebaseURL = taskSnapshot.getStorage().getDownloadUrl();
                     Task<Uri> firebaseURL = taskSnapshot.getStorage().getDownloadUrl();
                     Toast.makeText(ProfileActivity.this, "Upload Success", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onSuccess: firebase download url : " + firebaseURL.toString());
