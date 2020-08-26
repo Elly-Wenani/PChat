@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:text="Choose photo from memory"
+        android:text="@string/choose_photo_from_memory"
         android:textColor="#000"
         android:textSize="15sp" />
 
@@ -19,7 +19,7 @@
         android:layout_height="40dp"
         android:layout_below="@+id/dialogChoosePhoto"
         android:gravity="center_vertical"
-        android:text="Take a Photo"
+        android:text="@string/take_a_photo"
         android:textColor="#000"
         android:textSize="15sp" />
 

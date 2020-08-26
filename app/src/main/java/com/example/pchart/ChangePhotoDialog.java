@@ -37,7 +37,7 @@ public class ChangePhotoDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.activity_change_photo_dialog, container, false);
 
         //Initialize the textview for choosing an image from memory
-        TextView selectPhoto = (TextView) view.findViewById(R.id.dialogChoosePhoto);
+        TextView selectPhoto = view.findViewById(R.id.dialogChoosePhoto);
         selectPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +49,7 @@ public class ChangePhotoDialog extends DialogFragment {
         });
 
         //Initialize the textview for choosing an image from memory
-        TextView takePhoto = (TextView) view.findViewById(R.id.dialogOpenCamera);
+        TextView takePhoto = view.findViewById(R.id.dialogOpenCamera);
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

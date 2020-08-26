@@ -62,4 +62,6 @@
     <string name="field_message">message</string>
     <string name="field_timestamp">timestamp</string>
     <string name="dialog_change_photo">Change profile photo</string>
+    <string name="choose_photo_from_memory">Choose photo from memory</string>
+    <string name="take_a_photo">Take a Photo</string>
 </resources>

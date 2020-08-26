@@ -115,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity implements
         mSave = findViewById(R.id.btn_save);
         mProgressBar = findViewById(R.id.progressBar);
         mResetPasswordLink = findViewById(R.id.change_password);
-        mProfileImage = (ImageView) findViewById(R.id.profile_image);
+        mProfileImage = findViewById(R.id.profile_image);
 
         verifyStoragePermissions();
         setupFirebaseAuth();
@@ -195,14 +195,14 @@ public class ProfileActivity extends AppCompatActivity implements
 
         mProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 if (mStoragePermissions) {
                     ChangePhotoDialog dialog = new ChangePhotoDialog();
                     dialog.show(getSupportFragmentManager(), getString(R.string.dialog_change_photo));
                 } else {
                     verifyStoragePermissions();
+                    Toast.makeText(ProfileActivity.this, "B", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
@@ -628,7 +628,7 @@ public class ProfileActivity extends AppCompatActivity implements
     }
 
     /**
-     * Returns True if the user's email contains '@tabian.ca'
+     * Returns True if the user's email contains '@zetech.ac.ke'
      *
      * @param email
      * @return
