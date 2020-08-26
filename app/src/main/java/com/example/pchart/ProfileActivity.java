@@ -201,7 +201,7 @@ public class ProfileActivity extends AppCompatActivity implements
                     dialog.show(getSupportFragmentManager(), getString(R.string.dialog_change_photo));
                 } else {
                     verifyStoragePermissions();
-                    Toast.makeText(ProfileActivity.this, "B", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -280,7 +280,7 @@ public class ProfileActivity extends AppCompatActivity implements
             byte[] bytes = null;
             for (int i = 1; i < 11; i++) {
                 if (i == 10) {
-                    Toast.makeText(ProfileActivity.this, "That image is too large.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "The image is too large", Toast.LENGTH_SHORT).show();
                     break;
                 }
                 bytes = getBytesFromBitmap(mBitmap, 100 / i);
@@ -317,8 +317,8 @@ public class ProfileActivity extends AppCompatActivity implements
             StorageMetadata metadata = new StorageMetadata.Builder()
                     .setContentType("image/jpg")
                     .setContentLanguage("en")
-                    .setCustomMetadata("Elly's special meta data", "JK nothing special here")
-                    .setCustomMetadata("location", "Kenya")
+                    .setCustomMetadata("User special meta data", "Nothing special here")
+                    .setCustomMetadata("location", "Country")
                     .build();
             //if the image size is valid then we can submit to database
             UploadTask uploadTask = null;
