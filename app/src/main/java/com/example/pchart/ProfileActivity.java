@@ -332,16 +332,24 @@ public class ProfileActivity extends AppCompatActivity implements
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     //Now insert the download url into the firebase database
-                    Uri firebaseURL = taskSnapshot.getDownloadUrl();
-                    Toast.makeText(ProfileActivity.this, "Upload Success", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onSuccess: firebase download url : " + firebaseURL.toString());
-                    FirebaseDatabase.getInstance().getReference()
-                            .child(getString(R.string.dbnode_users))
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .child(getString(R.string.field_profile_image))
-                            .setValue(firebaseURL.toString());
+//                    Uri firebaseURL = taskSnapshot.getDownloadUrl();
 
-                    hideDialog();
+                    //Getting the download url
+                    taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Toast.makeText(ProfileActivity.this, "Upload Success", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onSuccess: firebase download url : " + uri.toString());
+
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child(getString(R.string.dbnode_users))
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(getString(R.string.field_profile_image))
+                                    .setValue(uri.toString());
+
+                            hideDialog();
+                        }
+                    });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
