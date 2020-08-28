@@ -65,7 +65,8 @@ public class ProfileActivity extends AppCompatActivity implements
             mSelectedImageBitmap = null;
             mSelectedImageUri = imagePath;
             Log.d(TAG, "getImagePath: got the image uri: " + mSelectedImageUri);
-            ImageLoader.getInstance().displayImage(imagePath.toString(), mProfileImage);
+
+            ImageLoader.getInstance().displayImage(mSelectedImageUri.toString(), mProfileImage);
         }
 
     }
@@ -76,7 +77,8 @@ public class ProfileActivity extends AppCompatActivity implements
             mSelectedImageUri = null;
             mSelectedImageBitmap = bitmap;
             Log.d(TAG, "getImageBitmap: got the image bitmap: " + mSelectedImageBitmap);
-            mProfileImage.setImageBitmap(bitmap);
+
+            mProfileImage.setImageBitmap(mSelectedImageBitmap);
         }
     }
 
@@ -537,36 +539,18 @@ public class ProfileActivity extends AppCompatActivity implements
         query1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //This loop returns a single result
                 for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
-                    User user = singleSnapshot.getValue(User.class);
                     Log.d(TAG, "onDataChange: (QUERY METHOD 1) found user: "
                             + singleSnapshot.getValue(User.class).toString());
 
-                    mName.setText(user.getName());
-                    mPhone.setText(user.getPhone());
-                    ImageLoader.getInstance().displayImage(user.getProfile_image(), mProfileImage);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        /*--------query two--------*/
-        Query query2 = reference.child(getString(R.string.dbnode_users))
-                .orderByChild(getString(R.string.field_user_id))
-                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        query2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
-                    Log.d(TAG, "onDataChange: (QUERY METHOD 2) found user: " + user.toString());
 
                     mName.setText(user.getName());
                     mPhone.setText(user.getPhone());
+
+                    ImageLoader.getInstance().displayImage(user.getProfile_image(), mProfileImage); //gets profile image
                 }
             }
 
@@ -575,6 +559,28 @@ public class ProfileActivity extends AppCompatActivity implements
 
             }
         });
+
+//        /*--------query two--------*/
+//        Query query2 = reference.child(getString(R.string.dbnode_users))
+//                .orderByChild(getString(R.string.field_user_id))
+//                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//        query2.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
+//                    User user = singleSnapshot.getValue(User.class);
+//                    Log.d(TAG, "onDataChange: (QUERY METHOD 2) found user: " + user.toString());
+//
+//                    mName.setText(user.getName());
+//                    mPhone.setText(user.getPhone());
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
         mEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
 
