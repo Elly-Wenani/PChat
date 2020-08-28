@@ -3,10 +3,12 @@ package com.example.pchart;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.pchart.Utility.UniversalImageLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    /**
+     * Init image loader
+     */
+
+    private void initImageLoader() {
+        UniversalImageLoader imageLoader = new UniversalImageLoader(MainActivity.this);
+        ImageLoader.getInstance().init(imageLoader.getConfig());
     }
 
     @Override

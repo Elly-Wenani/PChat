@@ -330,8 +330,7 @@ public class ProfileActivity extends AppCompatActivity implements
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     //Now insert the download url into the firebase database
-                    //Uri firebaseURL = taskSnapshot.getStorage().getDownloadUrl();
-                    Task<Uri> firebaseURL = taskSnapshot.getStorage().getDownloadUrl();
+                    Uri firebaseURL = taskSnapshot.getDownloadUrl();
                     Toast.makeText(ProfileActivity.this, "Upload Success", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onSuccess: firebase download url : " + firebaseURL.toString());
                     FirebaseDatabase.getInstance().getReference()
@@ -531,7 +530,7 @@ public class ProfileActivity extends AppCompatActivity implements
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-        /*--------query one--------*/
+        /*--------query method one--------*/
         Query query1 = reference.child(getString(R.string.dbnode_users))
                 .orderByKey()
                 .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
